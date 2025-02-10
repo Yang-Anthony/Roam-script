@@ -1,0 +1,25 @@
+name: Run FreeRoam Script
+
+on:
+  push:
+    branches: [ main ]
+  # Optional: Schedule the job (runs every hour in this example)
+  # schedule:
+  #   - cron: '0 * * * *'
+
+jobs:
+  run-freeRoam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: pip install requests
+      
+      - name: Run FreeRoam Script
+        run: python freeRoam.py
