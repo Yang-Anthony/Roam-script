@@ -3,9 +3,9 @@ name: Run FreeRoam Script
 on:
   push:
     branches: [ main ]
-  # Optional: Schedule the job (runs every hour in this example)
+  # Optionally, you can schedule the workflow:
   # schedule:
-  #   - cron: '0 * * * *'
+  #   - cron: '0 * * * *'  # runs every hour
 
 jobs:
   run-freeRoam:
@@ -22,4 +22,8 @@ jobs:
         run: pip install requests
       
       - name: Run FreeRoam Script
+        env:
+          FLEXIROAM_USERNAME: ${{ secrets.FLEXIROAM_USERNAME }}
+          FLEXIROAM_PASSWORD: ${{ secrets.FLEXIROAM_PASSWORD }}
         run: python Flexiroam_FreePlan.py
+
